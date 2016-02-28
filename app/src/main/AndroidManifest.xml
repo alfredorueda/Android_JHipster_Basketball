@@ -11,15 +11,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.example.basketball.controller.activities.login.LoginActivity"
+            android:name=".controller.activities.login.LoginActivity"
             android:label="@string/app_name">
+        </activity>
+        <activity android:name=".controller.activities.main.MainActivity" />
+        <activity
+            android:name=".controller.activities.master_detail.PlayerListActivity"
+            android:label="@string/title_player_list"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.example.basketball.controller.activities.main.MainActivity"></activity>
+        <activity
+            android:name=".controller.activities.master_detail.PlayerDetailActivity"
+            android:label="@string/title_player_detail"
+            android:parentActivityName=".controller.activities.master_detail.PlayerListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.basketball.controller.activities.master_detail.PlayerListActivity" />
+        </activity>
     </application>
 
 </manifest>
