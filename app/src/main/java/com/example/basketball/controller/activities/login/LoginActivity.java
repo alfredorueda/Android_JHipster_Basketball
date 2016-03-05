@@ -115,20 +115,17 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
     public void onSuccess(UserToken userToken) {
         showProgress(false);
 
-        if(userToken!=null) {
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        } else {
-            mPasswordView.setError(getString(R.string.error_incorrect_username_or_password));
-            mPasswordView.requestFocus();
-        }
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override
     public void onFailure(Throwable t) {
         Log.e("LoginActivity->", "performLogin->onFailure ERROR " + t.getMessage());
         showProgress(false);
+        mPasswordView.setError(getString(R.string.error_incorrect_username_or_password));
+        mPasswordView.requestFocus();
     }
 
     /**

@@ -37,8 +37,15 @@ public class UserLoginManager {
             public void onResponse(Call<UserToken> call, Response<UserToken> response) {
                 Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
                 userToken = response.body();
-                bearerToken = "Bearer " + userToken.getAccessToken();
-                loginCallback.onSuccess(userToken);
+
+                int code = response.code();
+
+                if (code == 200 || code == 201) {
+                    bearerToken = "Bearer " + userToken.getAccessToken();
+                    loginCallback.onSuccess(userToken);
+                } else {
+                    loginCallback.onFailure(new Throwable("ERROR " + code + ", " + response.raw().message()));
+                }
             }
 
             @Override
