@@ -1,11 +1,15 @@
 package com.example.basketball.controller.activities.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.basketball.R;
+import com.example.basketball.controller.activities.master_detail.PlayerListActivity;
 import com.example.basketball.controller.managers.UserLoginManager;
 import com.example.basketball.model.UserToken;
 
@@ -17,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView refreshToken;
     private TextView expiresIn;
     private TextView scope;
+    private Button button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         refreshToken = (TextView) findViewById(R.id.refresh_token);
         expiresIn = (TextView) findViewById(R.id.expires_in);
         scope = (TextView) findViewById(R.id.scope);
+        button = (Button) findViewById(R.id.main_button);
     }
 
     @Override
@@ -47,5 +53,13 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Log.e("MainActivity->", "onResume ERROR: userToken is NULL");
         }
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, PlayerListActivity.class);
+                startActivity(i);
+            }
+        });
     }
 }

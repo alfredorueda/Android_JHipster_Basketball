@@ -14,6 +14,11 @@ public class UserLoginManager {
     private static UserLoginManager ourInstance;
     private UserToken userToken;
     private Context context;
+    private String bearerToken;
+
+    private UserLoginManager(Context context) {
+        this.context = context;
+    }
 
     public static UserLoginManager getInstance(Context context) {
         if(ourInstance == null){
@@ -24,10 +29,6 @@ public class UserLoginManager {
         return ourInstance;
     }
 
-    private UserLoginManager(Context context) {
-        this.context = context;
-    }
-
     public synchronized void performLogin(String username, String password, final LoginCallback loginCallback){
         Call<UserToken> call =  UserTokenManager.getInstance(context).getUserToken(username, password);
 
@@ -36,6 +37,7 @@ public class UserLoginManager {
             public void onResponse(Call<UserToken> call, Response<UserToken> response) {
                 Log.i("UserLoginManager ", " performtaks->call.enqueue->onResponse res: " + response.body());
                 userToken = response.body();
+                bearerToken = "Bearer " + userToken.getAccessToken();
                 loginCallback.onSuccess(userToken);
             }
 
@@ -49,5 +51,9 @@ public class UserLoginManager {
 
     public UserToken getUserToken(){
         return userToken;
+    }
+
+    public String getBearerToken() {
+        return bearerToken;
     }
 }

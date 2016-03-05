@@ -10,22 +10,22 @@
     tools:context=".controller.activities.main.MainActivity">
 
     <TextView
+        android:id="@+id/user_token_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/user_token_label"
-        android:id="@+id/user_token_label"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:text="@string/user_token_label"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TableLayout
+        android:id="@+id/tableLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:layout_below="@+id/user_token_label"
-        android:id="@+id/tableLayout"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true">
+        android:gravity="center">
 
         <TableRow
             android:layout_width="fill_parent"
@@ -33,20 +33,20 @@
             android:layout_margin="5dp">
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/access_token_label"
                 android:id="@+id/access_token_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
+                android:text="@string/access_token_label"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/dummy"
                 android:id="@+id/access_token"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:text="@string/dummy" />
         </TableRow>
 
         <TableRow
@@ -55,20 +55,20 @@
             android:layout_margin="5dp">
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/token_type_label"
                 android:id="@+id/token_type_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
+                android:text="@string/token_type_label"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/dummy"
                 android:id="@+id/token_type"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:text="@string/dummy" />
         </TableRow>
 
         <TableRow
@@ -77,20 +77,20 @@
             android:layout_margin="5dp">
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/grant_type_label"
                 android:id="@+id/grant_type_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
+                android:text="@string/grant_type_label"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/dummy"
                 android:id="@+id/grant_type"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:text="@string/dummy" />
         </TableRow>
 
         <TableRow
@@ -99,20 +99,20 @@
             android:layout_margin="5dp">
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/scope_label"
                 android:id="@+id/scope_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
+                android:text="@string/scope_label"
                 android:textStyle="bold" />
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/dummy"
                 android:id="@+id/scope"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="1"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:text="@string/dummy" />
         </TableRow>
 
         <TableRow
@@ -121,20 +121,20 @@
             android:layout_margin="5dp">
 
             <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/refresh_token_label"
                 android:id="@+id/refresh_token_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
                 android:layout_column="0"
+                android:text="@string/refresh_token_label"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/refresh_token"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/dummy"
-                android:id="@+id/refresh_token"
                 android:layout_column="1"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:text="@string/dummy" />
         </TableRow>
 
         <TableRow
@@ -143,21 +143,30 @@
             android:layout_margin="5dp">
 
             <TextView
+                android:id="@+id/expires_in_label"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/expires_in_label"
-                android:id="@+id/expires_in_label"
                 android:layout_column="0"
+                android:text="@string/expires_in_label"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/expires_in"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/dummy"
-                android:id="@+id/expires_in"
                 android:layout_column="1"
-                android:layout_marginLeft="5dp" />
+                android:layout_marginLeft="5dp"
+                android:text="@string/dummy" />
         </TableRow>
     </TableLayout>
+
+    <Button
+        android:id="@+id/main_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/user_token_label"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/user_token_label"
+        android:text="@string/main_button" />
 
 </RelativeLayout>

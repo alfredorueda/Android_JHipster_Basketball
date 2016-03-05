@@ -9,13 +9,15 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.basketball.R;
-import com.example.basketball.controller.activities.master_detail.dummy.DummyContent;
+import com.example.basketball.controller.managers.PlayerManager;
+import com.example.basketball.model.Player;
 
 import java.util.List;
 
@@ -27,13 +29,15 @@ import java.util.List;
  * item details. On tablets, the activity presents the list of items and
  * item details side-by-side using two vertical panes.
  */
-public class PlayerListActivity extends AppCompatActivity {
+public class PlayerListActivity extends AppCompatActivity implements PlayerCallback {
 
     /**
      * Whether or not the activity is in two-pane mode, i.e. running on a tablet
      * device.
      */
     private boolean mTwoPane;
+    private RecyclerView recyclerView;
+    private List<Player> players;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +57,8 @@ public class PlayerListActivity extends AppCompatActivity {
             }
         });
 
-        View recyclerView = findViewById(R.id.player_list);
+        recyclerView = (RecyclerView) findViewById(R.id.player_list);
         assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
 
         if (findViewById(R.id.player_detail_container) != null) {
             // The detail container view will be present only in the
@@ -66,16 +69,34 @@ public class PlayerListActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        PlayerManager.getInstance(this.getApplicationContext()).getAllPlayers(PlayerListActivity.this);
+    }
+
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+        Log.i("setupRecyclerView", "                     " + players);
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(players));
+    }
+
+    @Override
+    public void onSuccess(List<Player> playerList) {
+        players = playerList;
+        setupRecyclerView(recyclerView);
+    }
+
+    @Override
+    public void onFailure(Throwable t) {
+
     }
 
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final List<DummyContent.DummyItem> mValues;
+        private final List<Player> mValues;
 
-        public SimpleItemRecyclerViewAdapter(List<DummyContent.DummyItem> items) {
+        public SimpleItemRecyclerViewAdapter(List<Player> items) {
             mValues = items;
         }
 
@@ -87,17 +108,17 @@ public class PlayerListActivity extends AppCompatActivity {
         }
 
         @Override
-        public void onBindViewHolder(final ViewHolder holder, int position) {
+        public void onBindViewHolder(final ViewHolder holder, final int position) {
             holder.mItem = mValues.get(position);
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.mIdView.setText(mValues.get(position).getId().toString());
+            holder.mContentView.setText(mValues.get(position).getName());
 
             holder.mView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(PlayerDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        arguments.putString(PlayerDetailFragment.ARG_ITEM_ID, "" + position);
                         PlayerDetailFragment fragment = new PlayerDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
@@ -106,7 +127,7 @@ public class PlayerListActivity extends AppCompatActivity {
                     } else {
                         Context context = v.getContext();
                         Intent intent = new Intent(context, PlayerDetailActivity.class);
-                        intent.putExtra(PlayerDetailFragment.ARG_ITEM_ID, holder.mItem.id);
+                        intent.putExtra(PlayerDetailFragment.ARG_ITEM_ID, holder.mItem.getId().toString());
 
                         context.startActivity(intent);
                     }
@@ -123,7 +144,7 @@ public class PlayerListActivity extends AppCompatActivity {
             public final View mView;
             public final TextView mIdView;
             public final TextView mContentView;
-            public DummyContent.DummyItem mItem;
+            public Player mItem;
 
             public ViewHolder(View view) {
                 super(view);

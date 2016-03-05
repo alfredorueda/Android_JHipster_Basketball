@@ -13,17 +13,17 @@
         <activity
             android:name=".controller.activities.login.LoginActivity"
             android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".controller.activities.main.MainActivity" />
         <activity
             android:name=".controller.activities.master_detail.PlayerListActivity"
             android:label="@string/title_player_list"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".controller.activities.master_detail.PlayerDetailActivity"

@@ -16,4 +16,5 @@
     <string name="dummy">dummy text</string>
     <string name="title_player_list">Players</string>
     <string name="title_player_detail">Player Detail</string>
+    <string name="main_button">View players List</string>
 </resources>
