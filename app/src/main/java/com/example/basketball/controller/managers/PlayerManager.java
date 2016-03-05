@@ -50,12 +50,21 @@ public class PlayerManager {
             @Override
             public void onResponse(Call<List<Player>> call, Response<List<Player>> response) {
                 players = response.body();
-                playerCallback.onSuccess(players);
+
+                int code = response.code();
+
+                if (code == 200 || code == 201) {
+                    playerCallback.onSuccess(players);
+                } else {
+                    playerCallback.onFailure(new Throwable("ERROR" + code + ", " + response.raw().message()));
+                }
             }
 
             @Override
             public void onFailure(Call<List<Player>> call, Throwable t) {
                 Log.e("PlayerManager->", "getAllPlayers()->ERROR: " + t);
+
+                playerCallback.onFailure(t);
             }
         });
     }

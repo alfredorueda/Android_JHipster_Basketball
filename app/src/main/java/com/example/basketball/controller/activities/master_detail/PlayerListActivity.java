@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.basketball.R;
+import com.example.basketball.controller.activities.login.LoginActivity;
 import com.example.basketball.controller.managers.PlayerManager;
 import com.example.basketball.model.Player;
 
@@ -95,7 +96,9 @@ public class PlayerListActivity extends AppCompatActivity implements PlayerCallb
 
     @Override
     public void onFailure(Throwable t) {
-
+        Intent i = new Intent(PlayerListActivity.this, LoginActivity.class);
+        startActivity(i);
+        finish();
     }
 
     public class SimpleItemRecyclerViewAdapter
