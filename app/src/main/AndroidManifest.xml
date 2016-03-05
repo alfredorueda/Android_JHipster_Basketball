@@ -24,6 +24,9 @@
             android:name=".controller.activities.master_detail.PlayerListActivity"
             android:label="@string/title_player_list"
             android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.basketball.controller.activities.main.MainActivity" />
         </activity>
         <activity
             android:name=".controller.activities.master_detail.PlayerDetailActivity"
