@@ -128,7 +128,7 @@ public class PlayerListActivity extends AppCompatActivity implements PlayerCallb
                 public void onClick(View v) {
                     if (mTwoPane) {
                         Bundle arguments = new Bundle();
-                        arguments.putString(PlayerDetailFragment.ARG_ITEM_ID, "" + position);
+                        arguments.putString(PlayerDetailFragment.ARG_ITEM_ID, holder.mItem.getId().toString());
                         PlayerDetailFragment fragment = new PlayerDetailFragment();
                         fragment.setArguments(arguments);
                         getSupportFragmentManager().beginTransaction()
