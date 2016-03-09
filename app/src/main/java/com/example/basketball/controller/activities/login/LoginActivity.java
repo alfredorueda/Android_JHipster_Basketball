@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.basketball.R;
 import com.example.basketball.controller.activities.main.MainActivity;
+import com.example.basketball.controller.managers.LoginCallback;
 import com.example.basketball.controller.managers.UserLoginManager;
 import com.example.basketball.model.UserToken;
 
@@ -123,6 +124,8 @@ public class LoginActivity extends AppCompatActivity implements LoginCallback {
     @Override
     public void onFailure(Throwable t) {
         Log.e("LoginActivity->", "performLogin->onFailure ERROR " + t.getMessage());
+
+        // TODO: Gestionar los diversos tipos de errores. Por ejemplo, no se ha podido conectar correctamente.
         showProgress(false);
         mPasswordView.setError(getString(R.string.error_incorrect_username_or_password));
         mPasswordView.requestFocus();

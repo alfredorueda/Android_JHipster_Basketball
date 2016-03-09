@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.basketball.R;
 import com.example.basketball.controller.activities.login.LoginActivity;
+import com.example.basketball.controller.managers.PlayerCallback;
 import com.example.basketball.controller.managers.PlayerManager;
 import com.example.basketball.model.Player;
 

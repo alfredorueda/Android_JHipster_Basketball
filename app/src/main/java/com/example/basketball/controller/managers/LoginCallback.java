@@ -1,4 +1,4 @@
-package com.example.basketball.controller.activities.login;
+package com.example.basketball.controller.managers;
 
 import com.example.basketball.model.UserToken;
 

@@ -3,7 +3,6 @@ package com.example.basketball.controller.managers;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.basketball.controller.activities.master_detail.PlayerCallback;
 import com.example.basketball.controller.services.PlayerService;
 import com.example.basketball.model.Player;
 import com.example.basketball.util.CustomProperties;

@@ -1,4 +1,4 @@
-package com.example.basketball.controller.activities.master_detail;
+package com.example.basketball.controller.managers;
 
 import com.example.basketball.model.Player;
 

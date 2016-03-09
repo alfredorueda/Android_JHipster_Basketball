@@ -3,7 +3,6 @@ package com.example.basketball.controller.managers;
 import android.content.Context;
 import android.util.Log;
 
-import com.example.basketball.controller.activities.login.LoginCallback;
 import com.example.basketball.model.UserToken;
 
 import retrofit2.Call;
